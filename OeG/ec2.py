@@ -69,7 +69,8 @@ class Algoritmos:
                             digrafo[i][j] = 1
         return digrafo
     
-    def Tarjan(self, vertice: int, stack: list, pre: list, low: list, vis: list, cpre: int):
+    def Tarjan(self, vertice: int, stack: list, pre: list, low: list, vis: list):
+        global cpre, cont
         digrafo = self.digrafoController.digrafo
         n = len(digrafo)
         cpre +=1
@@ -77,21 +78,21 @@ class Algoritmos:
         low[vertice] = cpre
         vis[vertice] = 1
         stack.insert(0, vertice)
-        for i in range(n):
-            for j in range(n):
-                if digrafo[i][j] == 1:
-                    if pre[j] == 0:
-                        self.Tarjan(j, stack, pre, low, vis, cpre)
-                    if vis[j] == 1:
-                        low[j] = min(low[i], low[j])
+        for j in range(n):
+            if digrafo[vertice][j] == 1 and vertice!=j:
+                if pre[j] == 0:
+                    self.Tarjan(j, stack, pre, low, vis)
+                if vis[j] == 1:
+                    low[vertice] = min(low[vertice], low[j])
         if pre[vertice] == low[vertice]:
-            print('Novo componente')
+            cont+=1
+            print(f'Componente {cont}')
             while(True):
                 p = stack.pop(0)
                 print(p)
                 vis[vertice] = 0
                 if p == vertice:
-                    1 == 0
+                    break
 
     def Kosaraju(self, vis: list, ot: list, os: int, comp: int):
         digrafo = self.digrafoController.digrafo
@@ -120,7 +121,7 @@ class Algoritmos:
         digrafo_transposto = self.digrafoController.transpor(digrafo)
         for i in range(n):
             if digrafo_transposto[v][i] == 1 and vis[i] == 1:
-                self.BPT(v, i, vis, n)
+                self.BPT(v, i, vis, n, digrafo)
 
     def Prim(self, vertice:int):
         digrafo = self.digrafoController.digrafo
@@ -223,30 +224,33 @@ def warshal(alg:Algoritmos):
     alg.digrafoController.imprimir_matriz(warshalGraph)
 
 def tarjan(alg:Algoritmos):
+    global cpre, cont
     n = len(alg.digrafoController.digrafo)
     pre = [0]*n
     low = [None]*n
     vis = [0]*n
-    cpre = 0
+    cpre, cont = 0, 0
     stack = []
     alg.digrafoController.adicionar_aresta(0, 1, 1)
-    alg.digrafoController.adicionar_aresta(0, 7, 1)
+    alg.digrafoController.adicionar_aresta(0, 2, 1)
     alg.digrafoController.adicionar_aresta(1, 2, 1)
     alg.digrafoController.adicionar_aresta(1, 7, 1)
+    alg.digrafoController.adicionar_aresta(2, 0, 1)
     alg.digrafoController.adicionar_aresta(2, 3, 1)
     alg.digrafoController.adicionar_aresta(2, 5, 1)
     alg.digrafoController.adicionar_aresta(2, 8, 1)
     alg.digrafoController.adicionar_aresta(3, 4, 1)
-    alg.digrafoController.adicionar_aresta(3, 5, 1)
     alg.digrafoController.adicionar_aresta(4, 5, 1)
-    alg.digrafoController.adicionar_aresta(5, 6, 1)
+    alg.digrafoController.adicionar_aresta(5, 3, 1)
     alg.digrafoController.adicionar_aresta(6, 7, 1)
     alg.digrafoController.adicionar_aresta(6, 8, 1)
     alg.digrafoController.adicionar_aresta(7, 8, 1)
     print("\n*** Matriz de adjacências ***")
     alg.digrafoController.imprimir_matriz(alg.digrafoController.digrafo)
     for i in range(n):
-        alg.Tarjan(i, stack, pre, low, vis, cpre)
+        if pre[i] == 0:
+            alg.Tarjan(i, stack, pre, low, vis)
+    print(f'Número de componentes fortemente conexos: {cont}')
 
 def prim(alg:Algoritmos):
     alg.digrafoController.adicionar_aresta(0, 1, 4)
