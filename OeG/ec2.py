@@ -94,34 +94,43 @@ class Algoritmos:
                 if p == vertice:
                     break
 
-    def Kosaraju(self, vis: list, ot: list, os: int, comp: int):
+    def Kosaraju(self):
+        global os, ot, vis, comp
         digrafo = self.digrafoController.digrafo
         n = len(digrafo)
+        vis = [0]*n
+        ot = [-1]*n
+        os = n-1
+        comp = 0
+        
         for i in range(n):
             if vis[i] == 0:
-                self.OT(i, i, vis, ot, os, n, digrafo)
+                alg.OT(i, n, digrafo)
+        
         for i in range(n):
-            if ot[i] != 0:
-                comp+=1
-                print('Componente', comp)
-                self.BPT(i, i, vis, n, digrafo)
+                if ot[i] != -1 and vis[ot[i]] == 1:
+                    comp +=1
+                    print('Componente: ', comp)
+                    alg.BPT(ot[i], n, digrafo)
 
-    def OT(self, u: int, v:int, vis:list, ot:list, os:int, n:int, digrafo:list):
+    def OT(self, v:int, n:int, digrafo:list):
+        global vis, ot, os
         vis[v] = 1
         for i in range(n):
             if digrafo[v][i] == 1:
                 if vis[i] == 0:
-                    self.OT(v, i, vis, ot, os, n)
+                    self.OT(i, n, digrafo)
         ot[os] = v
         os -=1
 
-    def BPT(self, u: int, v:int, vis:list, n:int, digrafo: list):
+    def BPT(self, v:int, n:int, digrafo:list):
+        global vis
         vis[v] = 0
         print(v)
         digrafo_transposto = self.digrafoController.transpor(digrafo)
         for i in range(n):
             if digrafo_transposto[v][i] == 1 and vis[i] == 1:
-                self.BPT(v, i, vis, n, digrafo)
+                self.BPT(i, n, digrafo)
 
     def Prim(self, vertice:int):
         digrafo = self.digrafoController.digrafo
@@ -223,6 +232,27 @@ def warshal(alg:Algoritmos):
     print("\n*** Matriz com fechamento transitivo ***")
     alg.digrafoController.imprimir_matriz(warshalGraph)
 
+def kosaraju(alg:Algoritmos):
+    global os, vis, ot, comp
+    alg.digrafoController.adicionar_aresta(0, 1, 1)
+    alg.digrafoController.adicionar_aresta(0, 2, 1)
+    alg.digrafoController.adicionar_aresta(1, 2, 1)
+    alg.digrafoController.adicionar_aresta(1, 7, 1)
+    alg.digrafoController.adicionar_aresta(2, 0, 1)
+    alg.digrafoController.adicionar_aresta(2, 3, 1)
+    alg.digrafoController.adicionar_aresta(2, 5, 1)
+    alg.digrafoController.adicionar_aresta(2, 8, 1)
+    alg.digrafoController.adicionar_aresta(3, 4, 1)
+    alg.digrafoController.adicionar_aresta(4, 5, 1)
+    alg.digrafoController.adicionar_aresta(5, 3, 1)
+    alg.digrafoController.adicionar_aresta(6, 7, 1)
+    alg.digrafoController.adicionar_aresta(6, 8, 1)
+    alg.digrafoController.adicionar_aresta(7, 8, 1)
+    print("\n*** Matriz de adjacências ***")
+    alg.digrafoController.imprimir_matriz(alg.digrafoController.digrafo)
+    alg.Kosaraju()
+    print(f'Número de componentes fortemente conexos: {comp}')
+
 def tarjan(alg:Algoritmos):
     global cpre, cont
     n = len(alg.digrafoController.digrafo)
@@ -322,17 +352,19 @@ def bellman_ford(alg:Algoritmos, v: int):
 if __name__ == '__main__':
     n = 9
     alg = Algoritmos(n)
-    msg = '[1] - Warshal \n[2] - Tarjan \n[3] - Prim \n[4] - Floyd \n[5] - Bellman-Ford \nElse - exit\n'
+    msg = '[1] - Warshal \n[2] - Tarjan \n[3] - Kosaraju \n[4] - Prim \n[5] - Floyd \n[6] - Bellman-Ford \nElse - exit\n'
     opcao = int(input(msg))
     if opcao == 1: 
         warshal(alg)
     elif opcao == 2:
         tarjan(alg)
-    elif opcao == 3: 
+    elif opcao == 3:
+        kosaraju(alg)
+    elif opcao == 4: 
         prim(alg)
-    elif opcao == 4:
-        floyd(alg)
     elif opcao == 5:
+        floyd(alg)
+    elif opcao == 6:
         bellman_ford(alg, int(input('Insira o índice do vetor inicial: ')))
     else: 
         exit()
