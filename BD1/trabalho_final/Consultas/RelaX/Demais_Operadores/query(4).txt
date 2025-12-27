@@ -1,0 +1,5 @@
+-- Consulta que retorna a relação de todos os clientes que compraram algum jogo cadastrado na relação Jogo por Gandalf.
+JogosGandalf = pi ID_Jogo, NomeJogo, NomeFuncionario(sigma CPF = '659.068.290-91'(sigma CPF_Funcionario = CPF (rho Nome → NomeFuncionario(Funcionario) x Jogo)))
+JogosVendidos = pi ID_Jogo, NomeJogo(sigma ID_Jogo = ID (rho ID_Jogo → ID (Compra) x Jogo))
+ClientesGandalf = pi Nome (sigma NomeFuncionario != null(sigma CPF = CPF_Cliente (sigma ID_Jogo = ID ((rho ID_Jogo → ID (Compra) x Jogo) x Cliente)) left outer join JogosGandalf))
+pi * ClientesGandalf

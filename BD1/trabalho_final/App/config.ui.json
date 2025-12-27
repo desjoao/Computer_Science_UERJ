@@ -1,0 +1,94 @@
+{
+    "LAYOUT":{
+        "ROOT":{
+            "theme": "superhero",
+            "width": "960",
+            "height": "540",
+            "position_horizontal": "500",
+            "position_vertical": "250",
+            "resizable_width": "True",
+            "resizable_heigth": "True"
+        },
+
+        "TButton":{
+            "theme": "dark",
+            "state": "disabled",
+            "fill": "x",
+            "expand": "True",
+            "padding": "5",
+            "side": "bottom",
+            "font": "arial",
+            "font_size": "15",
+            "font_style": "bold"
+        },
+
+        "TEntry":{
+            "theme": "default",
+            "state": "readonly",
+            "fill": "x",
+            "expand": "True",
+            "padx": "5",
+            "pady": "5",
+            "font": "arial",
+            "font_size": "15",
+            "font_style": "bold"
+        },
+
+        "TDate":{
+            "theme": "default",
+            "fill": "x",
+            "expand": "True",
+            "padx": "5",
+            "pady": "5"
+        },
+
+        "TNotebook":{
+            "theme": "default",
+            "fill": "x",
+            "expand": "True",
+            "padx": "5",
+            "pady": "5",
+            "padding": "5",
+            "tabposition": "nw"
+        },
+
+        "TFrame":{
+            "theme": "default",
+            "fill": "x",
+            "expand": "True",
+            "pady": "5",
+            "borderwidth": "5",
+            "relief": "flat"
+        },
+
+        "TLabel":{
+            "theme": "default",
+            "fill": "x",
+            "expand": "True",
+            "padx": "5",
+            "pady": "5",
+            "side": "left",
+            "width": "20",
+            "font": "arial",
+            "font_size": "15",
+            "font_style": "bold"
+        },
+
+        "TTabela":{
+            "theme": "default",
+            "fill": "both",
+            "padx": "10",
+            "pady": "10",
+            "expand": "True",
+            "paginated": "True",
+            "searchable": "True"
+        },
+
+        "TopLevel":{
+            "width": "960",
+            "height": "540",
+            "horizontal": "500",
+            "vertical": "250"
+        }
+    }
+}

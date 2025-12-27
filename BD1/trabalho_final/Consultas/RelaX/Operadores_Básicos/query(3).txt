@@ -1,0 +1,3 @@
+-- Tabela contendo todas as pessoas cadastradas no banco de dados, cliente e/ou funcionário. Ordenação feita pelo Nome.
+Todos = tau Nome (Cliente union Funcionario)
+pi * (Todos)

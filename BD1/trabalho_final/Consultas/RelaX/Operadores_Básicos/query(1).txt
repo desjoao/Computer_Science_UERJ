@@ -1,0 +1,5 @@
+-- Consulta que retorna a relação de clientes que compraram o jogo Detetive e a data da compra.
+Detetive = sigma NomeJogo = 'Detetive' (Jogo)
+VendasDetetive = sigma ID_Jogo = ID (rho ID_Jogo → ID (Compra) x Detetive)
+JogadoresDetetive = sigma CPF = CPF_Cliente (Cliente x VendasDetetive)
+pi Nome, DataCompra (JogadoresDetetive)

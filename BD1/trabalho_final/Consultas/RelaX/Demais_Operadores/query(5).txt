@@ -1,0 +1,6 @@
+-- Consulta retorna a relação contendo o nome dos jogos, a quantidade deles que foram vendidos, além do agregado de faturamento, investimento e lucro para cada jogo. Ordenado pelo lucro.
+JogoCompra = Jogo x rho ID_Jogo → ID (Compra)
+JogosComprados = sigma ID_Jogo=ID (JogoCompra)
+Vendas = tau Vendas desc, NomeJogo (gamma NomeJogo, ValorVenda, ValorEncomenda; count(NomeJogo) → Vendas, sum(ValorVenda) → Faturamento, sum(ValorEncomenda) → Investimento(JogosComprados))
+Lucro = tau Lucro desc(pi NomeJogo, Vendas, Investimento, Faturamento, (Faturamento - Investimento) → Lucro (Vendas))
+pi * Lucro

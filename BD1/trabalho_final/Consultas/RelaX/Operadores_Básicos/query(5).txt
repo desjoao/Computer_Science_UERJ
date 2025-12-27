@@ -1,0 +1,6 @@
+-- Tabela com histórico de compra, contém nome do cliente, cpf do cliente, nome do jogo comprado e a data da compra. É ordenada pela data de compra.
+R1 = rho ID_Jogo → ID (Jogo)
+JogoCompra = sigma ID_Jogo=ID (R1 x Compra)
+ClienteCompra = sigma CPF = CPF_Cliente (Cliente x JogoCompra)
+HistCompra = pi Nome, CPF, NomeJogo, DataCompra (tau DataCompra (ClienteCompra))
+pi * (HistCompra)

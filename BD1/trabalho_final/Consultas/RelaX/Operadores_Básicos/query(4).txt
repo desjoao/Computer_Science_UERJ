@@ -1,0 +1,6 @@
+-- Tabela contendo Nomes e CPFs de Clientes que trabalham na loja.
+DadosFuncionario  = pi Nome, CPF (Funcionario)
+DadosCliente = pi Nome, CPF (Cliente)
+ClienteNaoFunc = DadosCliente - DadosFuncionario
+ClienteFunc = ((pi Nome, CPF(Cliente)) - ClienteNaoFunc)
+pi Nome, CPF (ClienteFunc)

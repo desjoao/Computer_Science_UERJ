@@ -1,0 +1,20 @@
+# comandos.py
+
+# Constantes para comandos da UI (para comunicação entre UI e Connect)
+# Menu Principal
+CMD_CLIENTE = 1
+CMD_COMPRA = 2
+
+# Menu Cliente
+CMD_CADASTRAR_CLIENTE = 11
+CMD_ALTERAR_CLIENTE = 12
+CMD_APAGAR_CLIENTE = 13
+CMD_LISTAR_CLIENTES = 14
+
+# Menu Compra
+CMD_REGISTRAR_COMPRA = 21
+CMD_ALTERAR_COMPRA = 22
+CMD_APAGAR_COMPRA = 23
+CMD_LISTAR_COMPRAS = 24
+
+CMD_CONSULTA = 99

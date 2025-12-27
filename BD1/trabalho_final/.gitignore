@@ -1,0 +1,9 @@
+'Trabalho Final Banco de Dados.pdf'
+App/build
+App/dist
+App/logs
+App/__pycache__
+App/ui.py
+App/venv/
+ModelosSQL/Luderia_dados.txt
+ModelosSQL/Luderia_BoardGames.backup

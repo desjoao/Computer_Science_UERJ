@@ -1,0 +1,11 @@
+-- Cria uma tabela contendo o nome do jogo, sua faixa etária e a classificação mínima de faixa etária. A tabela é ordenada pela faixa etária,
+JogosInfantis = sigma FaixaEtaria <10 (Jogo)
+JogosInfantoJuvenis = sigma FaixaEtaria >= 10 and FaixaEtaria < 18 (Jogo)
+JogosAdultos = sigma FaixaEtaria >= 18 and FaixaEtaria < 100 (Jogo)
+JogosImortais = sigma FaixaEtaria >=100 (Jogo)
+R1 = pi NomeJogo,FaixaEtaria, 'InfantoJuvenil'→ClassificacaoMinima (JogosInfantoJuvenis)
+R2 = pi NomeJogo, FaixaEtaria, 'Infantil'→ClassificacaoMinima (JogosInfantis)
+R3 = pi NomeJogo,FaixaEtaria, 'Adulto'→ClassificacaoMinima (JogosAdultos)
+R4 = pi NomeJogo, FaixaEtaria, 'Imortal'→ClassificacaoMinima (JogosImortais)
+JogoPorIdade = tau FaixaEtaria (R1 union R2 union R3 union R4)
+pi * (JogoPorIdade)

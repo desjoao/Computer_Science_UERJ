@@ -1,0 +1,4 @@
+-- Retorna uma relação com o nome e o número de compras de todos os clientes que efetuaram mais de uma compra na Luderia.
+Compradores = Cliente inner join CPF = CPF_Cliente (Compra)
+Compradores_Recorrentes = (gamma Nome; count(CPF_Cliente) → NumCompras(Compradores))
+pi Nome, NumCompras(sigma NumCompras >=2 (Compradores_Recorrentes))

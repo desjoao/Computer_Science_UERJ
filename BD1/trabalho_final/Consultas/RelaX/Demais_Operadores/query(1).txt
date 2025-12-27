@@ -1,0 +1,6 @@
+-- Consulta que retorna relação contendo o nome de uma pessoa (cliente e/ou funcionária) e a quantidade de telefones vinculadas ao seu cadastro.
+Telefones = rho CPF → CPF_Telefone (Telefone_cliente union Telefone_funcionario)
+Todos = Cliente union Funcionario
+TodosTelefones = Telefones x Todos
+TodosNumTelefones = tau QntTelefones desc((gamma Nome; count(CPF) → QntTelefones(sigma CPF=CPF_Telefone (TodosTelefones))))
+pi Nome, QntTelefones (TodosNumTelefones)

@@ -1,0 +1,3 @@
+-- Consulta retorna a relação contendo o nome dos jogos e a quantidade deles que estão registrados na relação Jogo.
+QntTitulos = tau Quantidade desc((gamma NomeJogo; count(NomeJogo) → Quantidade (Jogo)))
+pi NomeJogo, Quantidade (QntTitulos)

@@ -1,0 +1,7 @@
+cffi==2.0.0
+cryptography==46.0.3
+pillow==11.3.0
+psycopg2==2.9.11
+pycparser==2.23
+ttkbootstrap==1.18.1
+typing_extensions==4.15.0
